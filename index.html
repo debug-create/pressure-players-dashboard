@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101d20">
+  <meta name="description" content="Pressure Players: a transparent, evidence-led view of T20 batting and bowling value in high-leverage moments.">
+  <title>Pressure Players — T20 selection intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#rankings">Skip to rankings</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Pressure Players home"><span class="brand-mark">P<span>↗</span></span><span>PRESSURE<br><b>PLAYERS</b></span></a>
+    <nav aria-label="Main navigation"><a href="#rankings">Rankings</a><a href="#evidence">Evidence</a><a href="#method">Method</a></nav>
+    <a class="header-cta" href="report.pdf" target="_blank" rel="noopener">Read the report <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> SUPERR SELECTOR S2 · ROUND 1</div>
+        <h1>Who moves the game<br><em>when it matters?</em></h1>
+        <p>Evidence-led T20 player rankings for the balls that can swing a result. Explore who rises, how certain the numbers are, and what the forward test actually supports.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#rankings">Explore the rankings <span>↘</span></a><a class="text-link" href="#method">How we measured pressure <span>→</span></a></div>
+      </div>
+      <div class="hero-visual" aria-label="Illustration of a cricket pitch under a pressure spotlight">
+        <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="orbit orbit-3"></div>
+        <div class="pitch"><div class="crease crease-top"></div><div class="stumps stumps-top">▮ ▮ ▮</div><div class="crease crease-bottom"></div><div class="stumps stumps-bottom">▮ ▮ ▮</div></div>
+        <div class="ball"></div><div class="trajectory"></div>
+        <div class="visual-label label-top"><span class="tiny-dot"></span> HIGH LEVERAGE</div>
+        <div class="visual-label label-bottom">ONE BALL CAN CHANGE EVERYTHING <span>↗</span></div>
+        <span class="visual-coordinate">LI &gt; 1.354</span>
+      </div>
+    </section>
+
+    <section class="stat-strip" aria-label="Dataset at a glance"><div class="wrap stat-grid"><div><strong>786</strong><span>completed matches</span></div><div><strong>187,581</strong><span>deliveries analysed</span></div><div><strong>Top 20%</strong><span>of balls by leverage</span></div><div><strong>2022–26</strong><span>IPL + men's T20Is</span></div></div></section>
+
+    <section id="rankings" class="section wrap rankings-section">
+      <div class="section-head"><div><div class="kicker">01 / THE SHORTLIST</div><h2>Players worth a <span>closer look.</span></h2><p>Each point is estimated win probability added per pressure ball, above an average player in the same match state. Bars show 80% uncertainty intervals.</p></div><div class="section-aside">A shortlist, <em>not</em> a verdict.<br>Tap a player for the evidence.</div></div>
+      <div class="rank-toolbar"><div class="segmented" role="group" aria-label="Player role"><button id="batters-tab" class="active" type="button" aria-pressed="true" data-role="batters">Batters <span>10</span></button><button id="bowlers-tab" type="button" aria-pressed="false" data-role="bowlers">Bowlers <span>10</span></button></div><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search players</span><input id="search" type="search" placeholder="Search player or team"></label></div>
+      <div class="rank-layout"><div class="rank-card"><div class="chart-header"><span>RANK / PLAYER</span><span>RATING <small>×10⁻³ WPA / BALL</small></span></div><div id="rank-list" class="rank-list" aria-live="polite"></div><div class="chart-foot"><span class="legend-line"></span> 80% uncertainty interval <span class="legend-zero"></span> zero impact</div></div><aside id="player-card" class="player-card" aria-live="polite"></aside></div>
+      <p class="rank-note">A higher rating is better for both roles. The model selected this rating in a time-ordered test; it did not identify a separate “clutch gene.”</p>
+    </section>
+
+    <section id="evidence" class="evidence-section"><div class="wrap"><div class="section-head light"><div><div class="kicker">02 / THE REALITY CHECK</div><h2>Does the ranking <span>travel forward?</span></h2><p>At three date cutoffs, we rebuilt the models using earlier matches and scored the selected players on later matches.</p></div><div class="section-aside">Out-of-time test<br>55% · 65% · 75% cutoffs</div></div>
+      <div class="validation-grid"><article class="validation-card signal"><div class="validation-top"><span class="role-icon">↗</span><span class="signal-tag">POSITIVE SIGNAL</span></div><h3>Bowlers</h3><p>The selected ten outperformed the eligible pool on later pressure balls.</p><div class="big-number">+2.28 <small>×10⁻³</small></div><div class="number-label">forward hit gain</div><div class="interval-track" aria-label="80 percent interval 1.54 to 2.83, above zero"><span class="axis-zero"></span><span class="interval-range bowler-range"></span><span class="interval-point bowler-point"></span></div><div class="interval-labels"><span>0</span><span>80% interval: +1.54 to +2.83</span></div></article>
+      <article class="validation-card uncertain"><div class="validation-top"><span class="role-icon">↗</span><span class="signal-tag">UNCERTAIN SIGNAL</span></div><h3>Batters</h3><p>The estimated gain is positive, but its interval crosses zero and remains below the chance benchmark.</p><div class="big-number">+0.52 <small>×10⁻³</small></div><div class="number-label">forward hit gain</div><div class="interval-track" aria-label="80 percent interval minus 0.27 to plus 1.35, crosses zero"><span class="axis-zero"></span><span class="interval-range batter-range"></span><span class="interval-point batter-point"></span></div><div class="interval-labels"><span>0</span><span>80% interval: −0.27 to +1.35</span></div></article></div>
+      <div class="evidence-bottom"><div class="insight-mark">!</div><p><strong>What we can say:</strong> the bowler list has a useful forward signal. The batter list is a reasoned shortlist, with more uncertainty. Neither result establishes a special pressure-only skill.</p></div>
+    </div></section>
+
+    <section id="method" class="section wrap method-section"><div class="section-head"><div><div class="kicker">03 / HOW IT WORKS</div><h2>From every ball to <span>one decision.</span></h2><p>The selection rule was fixed before the final names were revealed.</p></div><a class="text-link" href="report.pdf" target="_blank" rel="noopener">Full methodology report <span>↗</span></a></div><div class="steps"><div class="step"><span class="step-no">01</span><div class="step-icon">◎</div><h3>Find the swing</h3><p>Estimate how much the next legal ball could change the result. The top fifth by leverage is “pressure.”</p></div><div class="step"><span class="step-no">02</span><div class="step-icon">±</div><h3>Credit the player</h3><p>Compare each outcome with what an average player would do in that same match state.</p></div><div class="step"><span class="step-no">03</span><div class="step-icon">◷</div><h3>Test in future time</h3><p>Train on earlier matches, then ask which rating best predicts later high-leverage performance.</p></div><div class="step"><span class="step-no">04</span><div class="step-icon">↗</div><h3>Show uncertainty</h3><p>Rank with the chosen rating and show intervals, sample sizes, normal-play comparisons, and stress tests.</p></div></div>
+      <div class="caveat"><div><span class="kicker">READ THIS BEFORE SELECTING</span><h3>General quality carries the signal.</h3></div><p>The selected rating pulls small pressure samples toward each player's all-situation quality. The data did not reveal a separate pressure-specific component. Pressure occurs mostly in chases (41.1% of second-innings balls; 0.6% of first-innings balls). The analysis pools IPL and men's T20Is, and intervals do not include uncertainty in the win-probability model.</p></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><div class="brand"><span class="brand-mark">P<span>↗</span></span><span>PRESSURE<br><b>PLAYERS</b></span></div><p>Built from the supplied ball-by-ball data. 786 matches · 2022–26.</p><a href="report.pdf" target="_blank" rel="noopener">Methodology report ↗</a></div></footer>
+</body>
+</html>
