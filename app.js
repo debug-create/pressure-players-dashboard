@@ -42,4 +42,5 @@ document.querySelectorAll('[data-role]').forEach(button => button.addEventListen
   render();
 }));
 $('#search').addEventListener('input', event => { state.query = event.target.value.trim().toLowerCase(); state.selected = null; render(); });
-fetch('data.json').then(response => { if (!response.ok) throw Error('Data unavailable'); return response.json(); }).then(data => { state.data = data; render(); }).catch(() => { $('#rank-list').innerHTML = '<div class="empty">The player data could not be loaded. Please refresh the page.</div>'; $('#player-card').innerHTML = ''; });
+if (window.PRESSURE_DATA) { state.data = window.PRESSURE_DATA; render(); }
+else { $('#rank-list').innerHTML = '<div class="empty">The player data could not be loaded. Please refresh the page.</div>'; $('#player-card').innerHTML = ''; }

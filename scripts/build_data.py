@@ -54,4 +54,8 @@ for role, suffix in (("batters", "batter"), ("bowlers", "bowler")):
     result[role] = players
 
 OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+OUT.with_suffix(".js").write_text(
+    "window.PRESSURE_DATA = " + json.dumps(result, ensure_ascii=False, separators=(",", ":")) + ";\n",
+    encoding="utf-8",
+)
 print(f"Wrote {OUT} with {sum(map(len, result.values()))} players")
